@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SIP Calculator Years</title>
+  </head>
+  <body>
+    <h1>SIP Calculator Years By Wepnex </h1>
+
+    <form>
+      <label for="investmentAmount">Investment Amount:</label>
+      <input type="number" id="investmentAmount" name="investmentAmount"><br><br>
+      <label for="investmentPeriod">Investment Period (in years):</label>
+      <input type="number" id="investmentPeriod" name="investmentPeriod"><br><br>
+      <label for="interestRate">Annual Interest Rate (%):</label>
+      <input type="number" id="interestRate" name="interestRate"><br><br>
+      <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    
+    <p id="result"></p>
+    
+    <script>
+      function calculate() {
+        var investmentAmount = document.getElementById("investmentAmount").value;
+        var investmentPeriod = document.getElementById("investmentPeriod").value;
+        var interestRate = document.getElementById("interestRate").value;
+    
+        var monthlyRate = interestRate / 12 / 100;
+        var futureValue = investmentAmount * (Math.pow((1 + monthlyRate), investmentPeriod * 12) - 1) * (1 + monthlyRate) / monthlyRate;
+        var totalInvestmentAmount = investmentAmount * investmentPeriod * 12;
+        var profit = futureValue - totalInvestmentAmount;
+    
+        document.getElementById("result").innerHTML = "Total Investment Amount after " + investmentPeriod + " Years: " + totalInvestmentAmount +
+                                                       "<br>" + "Future Value after " + investmentPeriod + " Years: " + (Math.round(futureValue))+
+                                                       "<br>" + "Profit: " +  (Math.round(profit));
+      }
+    </script>
+    
+  </body>
+</html>
